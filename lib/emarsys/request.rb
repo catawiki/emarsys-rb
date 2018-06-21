@@ -15,7 +15,8 @@ module Emarsys
       args = {
         method: http_verb,
         url: emarsys_uri,
-        headers: { content_type: :json, x_wsse: client.x_wsse_string }
+        headers: { content_type: :json, x_wsse: client.x_wsse_string },
+        log: Logger.new(STDOUT)
       }
 
       if client.open_timeout
