@@ -15,8 +15,7 @@ module Emarsys
       args = {
         method: http_verb,
         url: emarsys_uri,
-        headers: { content_type: :json, x_wsse: client.x_wsse_string },
-        log: Logger.new(STDOUT)
+        headers: { content_type: :json, x_wsse: client.x_wsse_string }
       }
 
       if client.open_timeout
@@ -32,6 +31,9 @@ module Emarsys
       end
 
       RestClient::Request.execute(args) do |response, request, result, &block|
+        if RestClient.log
+          RestClient.log.info response.inspect
+        end
         Emarsys::Response.new(response)
       end
     end
