@@ -32,11 +32,11 @@ module Emarsys
 
       RestClient::Request.execute(args) do |response, request, result, &block|
         if RestClient.log
-          RestClient.log.info "code: #{response.code}
-          body: #{response.body}
+          RestClient.log.info "Response
           headers: #{response.headers}
           cookies: #{response.cookies}
-          cookie_jar: #{response.cookie_jar}"
+          code: #{response.code}
+          body: #{response.body}"
         end
         Emarsys::Response.new(response)
       end
