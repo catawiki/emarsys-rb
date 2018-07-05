@@ -31,6 +31,9 @@ module Emarsys
       end
 
       RestClient::Request.execute(args) do |response, request, result, &block|
+        if RestClient.log
+          RestClient.log.info "Response (request payload #{converted_params.to_json}) - headers: #{response.headers} - cookies: #{response.cookies} - code: #{response.code} - body: #{response.body}"
+        end
         Emarsys::Response.new(response)
       end
     end
